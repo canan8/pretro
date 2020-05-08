@@ -1,5 +1,5 @@
 {
-  "name": "retro",
+  "name": "pretro",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
