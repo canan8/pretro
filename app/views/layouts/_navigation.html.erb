@@ -1,13 +1,14 @@
-<div class="ui inverted segment">
-  <div class="ui inverted secondary pointing menu">
-    <a class="active item">
-      Home
-    </a>
-    <a class="item">
-      Teams
-    </a>
-    <a class="item">
-      Account
-    </a>
+<%= link_to 'Pretro', root_path, class: 'item' %>
+<%= link_to 'Home', root_path, class: 'item' %>
+<%= link_to 'Teams', teams_path, class: 'item' %>
+<div class="right menu">
+  <div class="ui simple dropdown item" id="dropdown">
+    Account <i class="dropdown icon"></i>
+    <div class="menu">
+      <%= link_to 'Profile', root_path, class: 'item' %>
+      <%= link_to 'Settings', root_path, class: 'item' %>
+      <div class="divider"></div>
+      <%= link_to 'Log out', root_path, class: 'item' %>
+    </div>
   </div>
 </div>

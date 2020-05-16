@@ -16,10 +16,10 @@ require('jquery')
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+// $( document ).ready(function() {
+//   $('.ui.dropdown').dropdown();
+// });
 
-$(document).on('turbolinks:load', function() {
-  $('.item').click(function(e) {
-    $('.active').removeClass('active');
-    $(this).addClass('active');
-});
+$(document).on('turbolinks:load', function () {
+  // $('.ui.dropdown').dropdown(); use this later on @canan
 })
