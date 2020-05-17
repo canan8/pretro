@@ -1,6 +1,7 @@
 <%= link_to 'Pretro', root_path, class: 'item' %>
 <%= link_to 'Home', root_path, class: 'item' %>
 <%= link_to 'Teams', teams_path, class: 'item' %>
+<% if user_signed_in? %>
 <div class="right menu">
   <div class="ui simple dropdown item" id="dropdown">
     Account <i class="dropdown icon"></i>
@@ -12,3 +13,4 @@
     </div>
   </div>
 </div>
+<% end %>

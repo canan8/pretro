@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
   root 'welcome#index'
   get 'teams', to: 'teams#index'
+  post 'login', to: 'sessions#create'
 end

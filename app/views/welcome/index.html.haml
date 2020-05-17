@@ -1,0 +1,23 @@
+%h2.ui.centered.header Welcome to Pretro!
+.ui.container
+  .ui.placeholder.segment
+    .ui.two.column.very.relaxed.stackable.grid
+      .column
+        = form_with scope: :session, class: "ui form", url: login_path do |f|
+          .field
+            =f.label :username
+            .ui.left.icon.input
+              =f.text_field :username, placeholder: "Username"
+              %i.user.icon
+          .field
+            =f.label :password
+            .ui.left.icon.input
+              =f.text_field :password, placeholder: "Password"
+              %i.lock.icon
+          = f.button "Log in", class: "ui blue submit button"
+      .middle.aligned.column
+        .ui.big.button
+          %i.signup.icon
+          Sign Up
+    .ui.vertical.divider
+      Or
