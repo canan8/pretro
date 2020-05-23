@@ -9,7 +9,7 @@
       <%= link_to 'Profile', root_path, class: 'item' %>
       <%= link_to 'Settings', root_path, class: 'item' %>
       <div class="divider"></div>
-      <%= link_to 'Log out', root_path, class: 'item' %>
+      <%= link_to 'Log out', destroy_user_session_path, class: 'item', method: :delete %>
     </div>
   </div>
 </div>

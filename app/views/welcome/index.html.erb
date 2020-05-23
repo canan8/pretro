@@ -26,7 +26,7 @@
   <div class="ui placeholder segment">
     <div class="ui two column very relaxed stackable grid">
       <div class="column">
-        <%= form_with scope: :session, class: "ui form", url: login_path do |f| %>
+        <%= form_with scope: :session, class: "ui form", url: user_session_path, html: { method: :post } do |f| %>
           <div class="field">
             <%= f.label :email %>
             <div class="ui left icon input">
