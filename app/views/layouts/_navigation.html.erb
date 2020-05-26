@@ -6,8 +6,8 @@
   <div class="ui simple dropdown item" id="dropdown">
     Account <i class="dropdown icon"></i>
     <div class="menu">
-      <%= link_to 'Profile', root_path, class: 'item' %>
-      <%= link_to 'Settings', root_path, class: 'item' %>
+      <%= link_to 'Profile', current_user, class: 'item' %>
+      <%= link_to 'Settings', edit_user_registration_path, class: 'item' %>
       <div class="divider"></div>
       <%= link_to 'Log out', destroy_user_session_path, class: 'item', method: :delete %>
     </div>
