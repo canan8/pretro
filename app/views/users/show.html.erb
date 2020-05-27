@@ -1,3 +1,26 @@
-<h1 align="center"><%= @user.name %></h1>
-<h4 align="center"><%= @user.title %></h4>
-<h4 align="center"><%= @user.email %></h4>
+<div class="ui container">
+  <div class="ui card">
+    <div class="content">
+      <div class="header">
+        <%= @user.name %>
+      </div>
+    </div>
+    <div class="content">
+      <h4 class="ui sub header">
+        <%= @user.title %>
+      </h4>
+      <div class="ui small feed">
+        <div class="event">
+          <div class="content">
+            <div class="summary">
+              <%= @user.email %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <%= link_to 'Edit', edit_user_registration_path, class: 'ui button' %>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show, :index]
+
+  as :user do
+    get 'users/edit', :to => 'devise/registrations#edit', :as => :user_root
+  end
+
   root 'welcome#index'
   get 'teams', to: 'teams#index'
-  # post 'login', to: 'sessions#create'
+  
 end
