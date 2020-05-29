@@ -11,7 +11,7 @@
       <div class="item">
         <div class="content">
           <div class="header">
-            <%= team.name %>
+            <%= link_to team.name, team %>
           </div>
           <div class="description">
             <em><%= pluralize(team.users.count, 'member') %></em>

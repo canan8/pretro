@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -6,9 +8,8 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
   }
 
-  resources :users, only: [:show, :index]
-
-  root 'welcome#index'
-  get 'teams', to: 'teams#index'
   
+  resources :users, only: [:show, :index]
+  resources :teams
+  delete '/teams/remove_user/:id(.:format)', to: 'teams#remove_user_from_team' #??????
 end
