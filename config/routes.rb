@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
   }
 
-  
   resources :users, only: [:show, :index]
   resources :teams
   delete '/teams/remove_user/:id(.:format)', to: 'teams#remove_user_from_team' #??????
