@@ -31,14 +31,18 @@
           <% @team_users.each do |user| %>
             <div class="item">
               <div class="right floated content">
-                <%= link_to "Remove", remove_user_path(user), data: { confirm: "Are you sure?" }, class: 'ui tiny red button' %>
+                <%= link_to "Remove", remove_user_team_path(@team.id, user.id), data: { confirm: "Are you sure?" }, method: :delete, class: 'ui tiny red button' %>
                 <div class="ui buttons">
                   <button class="ui tiny basic blue button">Edit Permissions</button>
                 </div>
               </div>
               <div class="content">
                 <div class="header">
-                  <%= user.name %>
+                  <% if user.name? %>
+                    <%= user.name %>
+                  <% else %>
+                    <%= user.email %>
+                  <% end %>
                 </div>
                 <em><%= user.title %></em>
               </div>

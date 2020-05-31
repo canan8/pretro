@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show, :index]
-  resources :teams
-  delete '/teams/remove_user/:id(.:format)', to: 'teams#remove_user_from_team' #??????
+  resources :teams do
+    member do
+      delete 'remove_user/:id', to: 'teams#remove_user_from_team', as: 'remove_user'
+    end
+  end
 end

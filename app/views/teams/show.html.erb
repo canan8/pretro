@@ -17,12 +17,16 @@
         <div class="item">
           <div class="content">
             <div class="header">
-              <%= link_to user.name, user %>
+              <% if user.name? %>
+                <%= link_to user.name, user %>
+                <% else %>
+                <%= link_to user.email, user %>
+              <% end %>
             </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
     <div class="extra content">
       <%= link_to 'Edit Team', edit_team_path(@team.id), class: 'ui button' %>

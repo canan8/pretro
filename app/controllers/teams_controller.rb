@@ -24,7 +24,10 @@ class TeamsController < ApplicationController
   end
 
   def remove_user_from_team
-    #
+    @user = User.find(params[:id])
+
+    # relation = UserTeam.find_by(user_id: @user.id, team_id: xxx)
+    # relation.destroy
   end
 
   private
