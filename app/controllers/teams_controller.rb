@@ -1,43 +1,54 @@
 class TeamsController < ApplicationController
+  before_action :find_team, except: [:index]
+  before_action :team_users, only: [:show, :edit]
+
   def index
     @user_teams = current_user.teams
   end
 
   def show
-    find_team
-    team_users
   end
 
   def edit
-    find_team
-    team_users
   end
 
   def update
-    find_team.update(team_params)
+    @team.update(team_params)
     redirect_to team_path
   end
 
   def destroy
-    find_team.destroy
-    render 'index'
+    @team.destroy
+    redirect_to teams_path
+  end
+
+  def add_user
+    company = Company.find(@team[:company_id])
+    user = company.users.find_by(email: params[:user][:email])
+
+    if user
+      @team.users << user
+      redirect_back(fallback_location: edit_team_path)
+    else
+      # no such user in your company warning
+    end
   end
 
   def remove_user_from_team
-    @user = User.find(params[:id])
+    relation = UserTeam.find_by(user_id: params[:user_id], team_id: @team.id)
 
-    # relation = UserTeam.find_by(user_id: @user.id, team_id: xxx)
-    # relation.destroy
+    relation.destroy
+    redirect_back(fallback_location: edit_team_path)
   end
 
   private
 
   def find_team
-    @team = Team.find(params[:id])
+    @team ||= Team.find(params[:id])
   end
 
   def team_users
-    @team_users = @team.users
+    @team_users ||= @team.users
   end
 
   def team_params
