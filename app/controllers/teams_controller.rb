@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
   end
 
   def add_user
-    company = Company.find(@team[:company_id])
+    company = @team.company
     user = company.users.find_by(email: params[:user][:email])
 
     if user
@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
   def remove_user_from_team
     relation = UserTeam.find_by(user_id: params[:user_id], team_id: @team.id)
 
-    relation.destroy
+    relation.destroy!
     redirect_back(fallback_location: edit_team_path)
   end
 
@@ -48,7 +48,7 @@ class TeamsController < ApplicationController
   end
 
   def team_users
-    @team_users ||= @team.users
+    @team_users = @team.users
   end
 
   def team_params
