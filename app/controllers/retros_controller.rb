@@ -15,7 +15,7 @@ class RetrosController < ApplicationController
   private
 
   def retro_params
-    params.require(:retro).permit(:team_id, :date, :time)    
+    params.require(:retro).permit(:team_id, :date)    
   end
 
   def find_retro
