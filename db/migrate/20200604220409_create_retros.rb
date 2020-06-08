@@ -4,7 +4,7 @@ class CreateRetros < ActiveRecord::Migration[6.0]
       t.integer :team_id
       t.datetime :date
       t.decimal :rating
-      t.string :status
+      t.string :status, default: "active"
 
       t.timestamps
     end

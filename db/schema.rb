@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_220451) do
     t.integer "team_id"
     t.datetime "date"
     t.decimal "rating"
-    t.string "status"
+    t.string "status", default: "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

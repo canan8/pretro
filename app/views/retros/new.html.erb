@@ -1,0 +1,26 @@
+<div class="ui container">
+  <div class="column">
+    <%= form_for(:retro, url: retros_path, html: { method: :post, class: 'ui form'}) do |f| %>
+    <div class="field">
+      <%= f.label :team %>
+      <%= f.collection_select :team_id, current_user_teams, :id, :name %>
+    </div>
+    <!-- <div class="field">
+      <%= f.label :Date %>
+      <%= f.text_field :date, "data-provide" => 'datepicker' %>
+    </div>
+    <div class="field">
+      <%= f.label :Time %>
+      <%= f.text_field :time %>
+    </div> -->
+    <div class="field">
+      <%= f.label :DateTime %>
+      <%= f.datetime_select :date %>
+    </div>
+    <div class="actions">
+      <%= f.button "Create", class: 'blue ui button' %>
+      <%= link_to "Cancel", root_path, class: 'ui button'%>
+    </div>
+    <% end %>
+  </div>
+</div>
