@@ -12,4 +12,8 @@ class User < ApplicationRecord
 
   has_many :user_teams, dependent: :destroy
   has_many :teams, through: :user_teams
+
+  def already_present?(resource)
+    resource.users.include?(self)
+  end
 end
