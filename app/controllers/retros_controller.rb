@@ -5,8 +5,13 @@ class RetrosController < ApplicationController
   end
 
   def create
-    @retro = Retro.create(retro_params)
-    redirect_to @retro
+    @retro = Retro.new(retro_params)
+    if @retro.save
+      redirect_to @retro
+    else
+      flash[:error] = 'Retro session could not be created.' # this cant be displayed, fix it
+      redirect_to new_retro_path
+    end
   end
 
   def show
@@ -14,11 +19,13 @@ class RetrosController < ApplicationController
 
   private
 
+  class RetroCreateError < StandardError; end
+
   def retro_params
     params.require(:retro).permit(:team_id, :date)    
   end
 
   def find_retro
-    @retro ||= Retro.find(params[:id])
+    @retro = Retro.find(params[:id])
   end
 end
