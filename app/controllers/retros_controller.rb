@@ -6,7 +6,7 @@ class RetrosController < ApplicationController
 
   def create
     @retro = Retro.new(retro_params)
-    if @retro.save
+    if @retro.save!
       redirect_to @retro
     else
       flash[:error] = 'Retro session could not be created.' # this cant be displayed, fix it
@@ -18,8 +18,6 @@ class RetrosController < ApplicationController
   end
 
   private
-
-  class RetroCreateError < StandardError; end
 
   def retro_params
     params.require(:retro).permit(:team_id, :date)    
