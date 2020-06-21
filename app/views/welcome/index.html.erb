@@ -1,1 +1,14 @@
-<h2 class="ui centered header">Welcome to Pretro!</h2>
+<%= link_to '<i class="paper plane icon"></i> New Retro'.html_safe, new_retro_path, class: 'ui left floated button' %>
+<div class="ui container">
+  <% current_user_teams.each do |team| %>
+    <h3 class="ui dividing header">
+      <%= link_to team.name, team %>
+    </h3>
+    <% team.retros.each do |retro| %>
+      <% if retro.active? %>
+      <%= retro.id %>
+      <br>
+      <% end %>
+     <% end %>
+  <% end %>
+</div>

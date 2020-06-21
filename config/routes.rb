@@ -15,4 +15,5 @@ Rails.application.routes.draw do
       post 'add_user', to: 'teams#add_user', as: 'add_user'
     end
   end
+  resources :retros
 end
