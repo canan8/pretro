@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -7,8 +9,11 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show, :index]
-
-  root 'welcome#index'
-  get 'teams', to: 'teams#index'
-  
+  resources :teams do
+    member do
+      delete 'remove_user/:user_id', to: 'teams#remove_user_from_team', as: 'remove_user'
+      post 'add_user', to: 'teams#add_user', as: 'add_user'
+    end
+  end
+  resources :retros
 end

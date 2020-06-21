@@ -1,5 +1,24 @@
-<% @teams.each do |team| %>
-<ul>
-  <li> <%= team.name %> </li>
-</ul>
-<% end %>
+<div class="ui container">
+  <h3 class="ui top attached header">
+    <i class="users icon"></i>
+    <div class="content">
+      My Teams
+    </div>
+  </h3>
+  <div class="ui attached segment">
+    <div class="ui middle aligned animated selection list">
+      <% current_user_teams.each do |team| %>
+      <div class="item">
+        <div class="content">
+          <div class="header">
+            <%= link_to team.name, team %>
+          </div>
+          <div class="description">
+            <em><%= pluralize(team.users.count, 'member') %></em>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

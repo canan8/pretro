@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_085933) do
+ActiveRecord::Schema.define(version: 2020_06_04_220451) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "retro_id"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "answer_id"
+    t.string "type"
+    t.string "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "outcomes", force: :cascade do |t|
+    t.integer "retro_id"
+    t.string "detail"
+    t.string "status"
+    t.string "priority"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "retros", force: :cascade do |t|
+    t.integer "team_id"
+    t.datetime "date"
+    t.decimal "rating"
+    t.string "status", default: "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -23,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_085933) do
     t.integer "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
   end
 
   create_table "user_teams", force: :cascade do |t|

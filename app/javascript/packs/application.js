@@ -22,4 +22,7 @@ require('jquery')
 
 $(document).on('turbolinks:load', function () {
   // $('.ui.dropdown').dropdown(); use this later on @canan
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').hide();
+  });
 })

@@ -1,0 +1,67 @@
+<div class="ui container">
+  <h3 class="ui top attached header">
+    <i class="settings icon"></i>
+    <div class="content">
+      Team Settings
+      <div class="sub header">Manage your preferences</div>
+    </div>
+  </h3>
+  <div class="ui attached segment">
+    <div class="ui two column very relaxed grid">
+      <div class="column">
+        <%= form_for(@team, url: team_path(@team.id), html: { method: :put, class: 'ui form'}) do |f| %>
+          <div class="field">
+            <%= f.label :team_name %>
+            <%= f.text_field :name %>
+          </div>
+
+          <div class="field">
+            <%= f.label :team_description %>
+            <%= f.text_field :description %>
+          </div>
+
+          <div class="actions">
+            <%= f.button "Save", class: 'blue ui button' %>
+            <%= link_to "Cancel", @team, class: 'ui button'%>
+          </div>
+        <% end %>
+      </div>
+      <div class="column">
+        <div class="ui celled list">
+          <% @team_users.each do |user| %>
+            <div class="item">
+              <div class="right floated content">
+                <div class="ui buttons">
+                  <button class="ui tiny basic blue button">Edit Permissions</button>
+                </div>
+                <%= link_to "Remove", remove_user_team_path(@team.id, user.id), data: { confirm: "Are you sure?" }, method: :delete, class: 'ui tiny red button' %>
+              </div>
+              <div class="content">
+                <div class="header">
+                  <% if user.name? %>
+                    <%= user.name %>
+                  <% else %>
+                    <%= user.email %>
+                  <% end %>
+                </div>
+                <em><%= user.title %></em>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui attached segment">
+    <%= form_for :user, url: add_user_team_path(@team.id), html: { method: :post, class: 'ui form'} do  |f| %>
+      <div class="field">
+        <%= f.label :user_email %>
+        <%= f.email_field :email %>
+      </div>
+  
+      <%= f.button "Add User", class: 'ui blue button' %>
+    <% end %>
+  </div>
+  <br />
+  <%= link_to "Delete Team", team_path(@team), data: { confirm: "Are you sure?" }, method: :delete, class: 'negative ui button' %>
+</div>

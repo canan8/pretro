@@ -1,0 +1,35 @@
+<div class="ui container">
+  <div class="ui card">
+    <div class="content">
+      <div class="header">
+        <%= @team.name %>
+      </div>
+      <div class="meta">
+        <em><%= pluralize(@team_users.count, "Member") %></em>
+      </div>
+      <div class="description">
+        <%= @team.description %>
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui middle aligned animated selection divided list">
+        <% @team_users.each do |user| %>
+        <div class="item">
+          <div class="content">
+            <div class="header">
+              <% if user.name? %>
+                <%= link_to user.name, user %>
+                <% else %>
+                <%= link_to user.email, user %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="extra content">
+      <%= link_to 'Edit Team', edit_team_path(@team.id), class: 'ui button' %>
+    </div>
+  </div>
+</div>
