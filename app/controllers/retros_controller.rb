@@ -6,10 +6,10 @@ class RetrosController < ApplicationController
 
   def create
     @retro = Retro.new(retro_params)
-    if @retro.save!
+    if @retro.save
       redirect_to @retro
     else
-      flash[:error] = 'Retro session could not be created.' # this cant be displayed, fix it
+      flash[:error] = 'Retro session could not be created.'
       redirect_to new_retro_path
     end
   end
