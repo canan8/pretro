@@ -14,25 +14,23 @@ class TeamsController < ApplicationController
 
   def update
     begin
-    @team.update!(team_params)
+      @team.update!(team_params)
+      flash[:success] = 'Team was successfully updated.'
+      redirect_to team_path
     rescue StandardError => e
       flash[:error] = 'Oops, please try again.'
       reload
-    else
-      flash[:success] = 'Team was successfully updated.'
-      redirect_to team_path
     end
   end
 
   def destroy
     begin
-    @team.destroy!
-    rescue StandardError => e
-      flash[:error] = 'Oops, please try again.'
-      reload
-    else
+      @team.destroy!
       flash[:success] = 'Team is gone forever.'
       redirect_to teams_path
+    rescue StandardError => e
+      flash[:error] = 'Oops, please try again.'
+      reload      
     end
   end
 
@@ -60,20 +58,17 @@ class TeamsController < ApplicationController
     begin
       relation = UserTeam.find_by!(user_id: params[:user_id], team_id: @team.id)
       relation.destroy!
+      flash[:success] = 'User was successfully removed. Farewell...'
     rescue ActiveRecord::RecordNotFound => e
       flash[:error] = 'User is not in the team anyway.'
     rescue StandardError => e
       flash[:error] = 'Oops, please try again.'
-    else
-      flash[:success] = 'User was successfully removed. Farewell...'
     end
     
     reload
   end
 
   private
-
-  class UserAlreadyPresentError < StandardError; end
 
   class UserAlreadyPresentError < StandardError; end
 
