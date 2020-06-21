@@ -10,6 +10,7 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX }
 
+  belongs_to :company, optional: true
   has_many :user_teams, dependent: :destroy
   has_many :teams, through: :user_teams
 
