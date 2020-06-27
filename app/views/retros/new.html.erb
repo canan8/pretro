@@ -16,3 +16,12 @@
     <% end %>
   </div>
 </div>
+
+
+<%= simple_form_for :retro do |f| %>
+<%= f.label :DateTime %>
+  <%= f.input :date, as: :date, start_year: Date.today.year,
+                              end_year: Date.today.year + 5, discard_day: false,
+                              order: [:day, :month, :year] %>
+  <%= f.button :submit %>
+<% end %>

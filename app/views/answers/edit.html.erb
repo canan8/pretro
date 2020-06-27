@@ -1,0 +1,66 @@
+<div class="ui container">
+  <%= form_for(@answer, url: answer_path(@retro.id, @answer.id), html: { method: :put, class: 'ui form'}) do |f| %>
+  <h3 class="ui dividing header">Positive</h3>
+  <% @answer.positive_entries.each do |entry| %>
+  <%= f.fields_for @answer.positive_entries do |entry_f| %>
+      <!-- <fieldset class="fieldset">
+      <div class="ui corner labeled input">
+        <%= entry_f.text_field :detail, value: entry.detail %><br />
+        <div class="ui corner label">
+        <%= link_to '<i class="times red icon"></i>'.html_safe, '#', class: "remove_fields" %><br />
+        </div>
+      </div>
+        <%= entry_f.hidden_field :_destroy %>
+        <%= entry_f.hidden_field :entry_type, value: entry.entry_type %>
+      </fieldset> -->
+      <%= render 'entry_fields', f: entry_f, entry_type: 'positive' %>
+      <% end %>
+    <% end %>
+  <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'positive' %>
+
+
+  <h3 class="ui dividing header">Neutral</h3>
+    <% @answer.neutral_entries.each do |entry| %>
+      <%= f.fields_for @answer.neutral_entries do |entry_f| %>
+      <fieldset class="fieldset">
+      <div class="ui corner labeled input">
+        <%= entry_f.text_field :detail, value: entry.detail %><br />
+        <div class="ui corner label">
+        <%= link_to '<i class="times red icon"></i>'.html_safe, '#', class: "remove_fields" %><br />
+        </div>
+      </div>
+        <%= entry_f.hidden_field :_destroy %>
+        <%= entry_f.hidden_field :entry_type, value: entry.entry_type %>
+      </fieldset>
+      <% end %>
+    <% end %>
+  <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'neutral' %>
+
+  <h3 class="ui dividing header">Negative</h3>
+  <% @answer.negative_entries.each do |entry| %>
+      <%= f.fields_for @answer.negative_entries do |entry_f| %>
+      <fieldset class="fieldset">
+      <div class="ui corner labeled input">
+        <%= entry_f.text_field :detail, value: entry.detail %><br />
+        <div class="ui corner label">
+        <%= link_to '<i class="times red icon"></i>'.html_safe, '#', class: "remove_fields" %><br />
+        </div>
+      </div>
+        <%= entry_f.hidden_field :_destroy %>
+        <%= entry_f.hidden_field :entry_type, value: entry.entry_type %>
+      </fieldset>
+      <% end %>
+    <% end %>
+  <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'negative' %>
+
+  <h3 class="ui dividing header">Rate your last sprint :)</h3>
+  <div class="rating">
+    <%= f.select :rating, 1..10, {include_blank: "Select..."} %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.button "Submit Answer", class: 'blue ui button' %>
+    <%= link_to "Cancel", @retro, class: 'ui button'%>
+  </div>
+  <% end %>
+</div>

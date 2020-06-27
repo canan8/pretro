@@ -1,0 +1,10 @@
+<fieldset class="fieldset">
+<div class="ui corner labeled input">
+  <%= f.text_field :detail %><br />
+  <div class="ui corner label">
+  <%= link_to '<i class="times red icon"></i>'.html_safe, '#', class: "remove_fields" %><br />
+  </div>
+</div>
+  <%= f.hidden_field :_destroy %>
+  <%= f.hidden_field :entry_type, value: entry_type %>
+</fieldset>

@@ -1,5 +1,61 @@
-<div class="ui container">
-  <!-- will be replaced with answers -->
-  <h1>Retro show</h1>
-  <%= @retro.id %>
+<h1 class="ui header"><%= @retro.title %></h1>
+<h4 class="ui header left floated">Date: <%= @retro.date.to_date.strftime('%d/%m/%Y') %></h4>
+<%= link_to '<i class="plus icon"></i>Add Answer'.html_safe, new_answer_path(@retro.id), class: 'ui labeled icon right floated tiny blue button' %>
+<br />
+<br />
+<% if @retro.answers.count.zero? %>
+<!-- or answers are not revealed yet (add later) -->
+<div class="ui placeholder segment">
+  <div class="ui icon header disabled">
+    <i class="frown outline huge icon"></i>
+    No answers yet
+  </div>
 </div>
+<% else %>
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @retro_answers.each do |answer| %>
+    <tr>
+      <td><%= link_to answer.user.name, answer.user %></td>
+      <td colspan="2">
+        <table>
+          <% answer.positive_entries.each do |entry| %>
+          <tr>
+            <td>
+              <i class="laugh beam outline big blue icon"></i><%= entry.detail %>
+            </td>
+          </tr>
+          <% end %>
+          <% answer.neutral_entries.each do |entry| %>
+          <tr>
+            <td>
+              <i class="meh blank outline big yellow icon"></i><%= entry.detail %>
+            </td>
+          </tr>
+          <% end %>
+          <% answer.negative_entries.each do |entry| %>
+          <tr>
+            <td>
+              <i class="frown open outline big red icon"></i><%= entry.detail %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </td>
+      <td>
+      <% if current_user == answer.user %>
+      <%= link_to 'Edit', edit_answer_path(@retro.id, answer.id) %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

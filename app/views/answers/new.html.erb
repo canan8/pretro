@@ -1,0 +1,32 @@
+<div class="ui container">
+  <%= form_for(@answer, html: { class: 'ui form'}) do |f| %>
+  <h3 class="ui dividing header">Positive</h3>
+  <%= f.fields_for :entries do |entry_f| %>
+
+  <%= render 'entry_fields', f: entry_f, entry_type: 'positive' %>
+  <% end %>
+  <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'positive' %>
+
+  <h3 class="ui dividing header">Neutral</h3>
+  <%= f.fields_for :entries do |entry_f| %>
+  <%= render 'entry_fields', f: entry_f, entry_type: 'neutral' %>
+  <% end %>
+  <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'neutral' %>
+
+  <h3 class="ui dividing header">Negative</h3>
+  <%= f.fields_for :entries do |entry_f| %>
+  <%= render 'entry_fields', f: entry_f, entry_type: 'negative' %>
+  <% end %>
+  <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'negative' %>
+
+  <h3 class="ui dividing header">Rate your last sprint :)</h3>
+  <div class="rating">
+    <%= f.select :rating, 1..10, {include_blank: "Select..."} %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.button "Submit Answer", class: 'blue ui button' %>
+    <%= link_to "Cancel", @retro, class: 'ui button'%>
+  </div>
+  <% end %>
+</div>

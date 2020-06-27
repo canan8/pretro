@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_220451) do
+ActiveRecord::Schema.define(version: 2020_06_21_113952) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_220451) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "answer_id"
-    t.string "type"
+    t.string "entry_type"
     t.string "detail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_220451) do
     t.string "status", default: "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
   end
 
   create_table "teams", force: :cascade do |t|

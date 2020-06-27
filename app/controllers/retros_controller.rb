@@ -1,5 +1,6 @@
 class RetrosController < ApplicationController
   before_action :find_retro, only: [:show]
+  before_action :retro_answers, only: [:show]
 
   def new
   end
@@ -17,13 +18,17 @@ class RetrosController < ApplicationController
   def show
   end
 
+  def retro_answers
+    @retro_answers = @retro.answers
+  end
+
   private
 
   def retro_params
-    params.require(:retro).permit(:team_id, :date)    
+    params.require(:retro).permit(:team_id, :date, :title)
   end
 
   def find_retro
-    @retro = Retro.find(params[:id])
+    @retro = Retro.find(params[:retro_id])
   end
 end

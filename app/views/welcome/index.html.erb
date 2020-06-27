@@ -6,7 +6,7 @@
     </h3>
     <% team.retros.each do |retro| %>
       <% if retro.active? %>
-      <%= retro.id %>
+      <%= link_to retro.date.to_date, retro_path(retro.id) %>
       <br>
       <% end %>
      <% end %>
