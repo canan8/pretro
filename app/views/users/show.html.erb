@@ -1,4 +1,5 @@
-<div class="ui container">
+<div class="main ui container">
+<div class="left-side-container">
   <div class="ui card">
     <div class="content">
       <div class="header">
@@ -23,4 +24,50 @@
       <%= link_to 'Edit', edit_user_registration_path, class: 'ui button' %>
     </div>
   </div>
+</div>
+<div class="right-side-container">
+  <% @user.answers.each do |answer| %>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>Date: <%= answer.retro.date.to_date.strftime('%d/%m/%Y') %> </th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="3">
+            <table>
+              <% answer.positive_entries.each do |entry| %>
+              <tr>
+                <td>
+                  <i class="laugh beam outline big blue icon"></i><%= entry.detail %>
+                </td>
+              </tr>
+              <% end %>
+              <% answer.neutral_entries.each do |entry| %>
+              <tr>
+                <td>
+                  <i class="meh blank outline big yellow icon"></i><%= entry.detail %>
+                </td>
+              </tr>
+              <% end %>
+              <% answer.negative_entries.each do |entry| %>
+              <tr>
+                <td>
+                  <i class="frown open outline big red icon"></i><%= entry.detail %>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+  </div>
+</div>
 </div>

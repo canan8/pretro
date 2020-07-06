@@ -13,6 +13,7 @@ class User < ApplicationRecord
   belongs_to :company, optional: true
   has_many :user_teams, dependent: :destroy
   has_many :teams, through: :user_teams
+  has_many :answers
 
   def already_present?(resource)
     resource.users.include?(self)
