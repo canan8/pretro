@@ -3,7 +3,7 @@
   <h3 class="ui dividing header">Positive</h3>
   <% @answer.positive_entries.each do |entry| %>
   <%= f.fields_for @answer.positive_entries do |entry_f| %>
-      <!-- <fieldset class="fieldset">
+      <fieldset class="fieldset">
       <div class="ui corner labeled input">
         <%= entry_f.text_field :detail, value: entry.detail %><br />
         <div class="ui corner label">
@@ -12,8 +12,7 @@
       </div>
         <%= entry_f.hidden_field :_destroy %>
         <%= entry_f.hidden_field :entry_type, value: entry.entry_type %>
-      </fieldset> -->
-      <%= render 'entry_fields', f: entry_f, entry_type: 'positive' %>
+      </fieldset>
       <% end %>
     <% end %>
   <%= link_to_add_fields '<i class="add icon"></i>'.html_safe, f, :entries, 'positive' %>

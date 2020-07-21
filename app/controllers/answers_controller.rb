@@ -19,7 +19,6 @@ class AnswersController < ApplicationController
   end
 
   def update
-    byebug
     @answer = Answer.find(params[:answer_id])
     @retro = @answer.retro
 
